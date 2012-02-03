@@ -1,0 +1,16 @@
+  <table align="center" border="1">
+                        <tr>
+                                <th> First Name</th>
+                                <th>Last Name</th>
+                                <th>Gender </th>
+                        </tr>
+                        <% @students.each do |s|%>
+                                <tr>
+                                        <td><%=s.first_name%> </td>
+                                        <td><%=s.last_name%> </td>
+                                        <td><%=s.gender%> </td>
+                                        <td> <%= link_to "View Details", "/students/#{s.id}"%> </td>
+                                </tr>
+                        <%end%>
+  </table>
+

@@ -1,0 +1,75 @@
+        <%=link_to "New Book", "/books/new"%>
+        <table align="center" border="1" width="25%" height="25%" rules="cols">
+                <tr>
+                         <th style="color:green; outline:1px solid black">
+                                Book Name
+                        </th>
+                        <th style="color:green; outline:1px solid black">
+                                Price
+                        </th>
+                </tr>
+        <% @books.each do |b|%>
+                <tr>
+                        <td style="color:#F55E6D">
+                                 <%=b.book_name%>
+                        </td>
+
+                        <td>
+                                <%=b.price%>
+                        </td>
+                </tr>
+        <%end%>
+        </table></br></br>
+
+        <table align="center">
+                <tr>
+                        <% if !@limit.nil? %>
+                        <%#= page_entries_info @books , :entry_name => @controller.controller_name.upcase  if @books.size > 0%>
+                        <td style="color:#FE4399 ; outline:1px solid yellow; text_decoration:none">
+                        <b style="color:green ; font-size:13px">
+                        (Showing </b><%=@offset+1%> - <%=@offset+@books.length %>
+                         <b style="color:green ; font-size:13px"> of </b>
+                        <%=@books_count%><b style="color:green ; font-size:13px">) </b>
+
+                                <%if @offset != 0%>
+                                       <%=link_to_unless_current "(( prev", :controller=>"books", :action=> :index, :value=> @prev %>
+                                <%end%>
+                                <%if !params[:value]%>
+                                        1
+                                <%else%>
+                                        <%=link_to_unless_current 1 , :controller=>"books", :action=> :index, :value=> 1, :limit=> @limit%>
+                                <%end%>
+                               <%(2..@page.to_i).each do |i|%>
+                                        <%=link_to_unless_current i , :controller=>"books", :action=> :index, :value=> i, :limit=> @limit%>
+                               <% end %>
+
+                                 <%if (@books_count%@limit !=0)%>
+                                        <%=link_to_unless_current @page+1 , :controller=>"books", :action=> :index, :value=>@page+1%>
+                                <%end%>
+                                <%if @offset == 0%>
+                                <%=link_to_unless_current "next ))", :controller=>"books", :action=> :index, :value=> 2, :limit=> @limit%>
+                                <%else%>
+                                <%=link_to_unless_current "next ))", :controller=>"books", :action=> :index, :value=> @next, :limit=> @limit%>
+                                 <%end%>
+                        </td>
+
+                        <%else%>
+                                <td style="color:green; outline:1px solid yellow; font-size:13px">  (Showing all of all) </td>
+                        <% end %>
+
+                        <td style="background_color:red">
+                        <% options_array = ["select",4,8,12].map{|x| [x,x] } %>
+                        <% options_array << ["All", "all"] %>
+                        <%      #this also rite       #= select_tag("some_id", options_for_select(options_array,@limit.nil? ? ' ' : @limit.to_i ), :onchange => "paging(this.value)")%>
+                        <%=select_tag("some_id",options_for_select([["Select One",""],["4","4"],["8","8"],["12","12"],["All","all"]]),:onchange => "paging(this.value)")%>
+                        </td>
+                </tr>
+        </table>
+        <script type="text/javascript">
+                function paging(limit)
+                        {
+                                 window.location=("/books?limit="+limit);
+                                //alert(limit);
+                        }
+        </script>
+

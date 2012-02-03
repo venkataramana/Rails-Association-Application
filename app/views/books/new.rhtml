@@ -1,0 +1,12 @@
+<table>
+        <%form_for @book, :url => {:action => "create"} do |f|%>
+        <tr>
+                <td> Book Name: <%=f.text_field :book_name%> </td>
+        <tr>
+         <tr>
+                <td> Price: <%=f.text_field :price%> </td>
+        <tr>
+</table>
+        <%= f.submit "Submit"%>
+        <%end%>
+

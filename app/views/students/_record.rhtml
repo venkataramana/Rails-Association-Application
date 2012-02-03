@@ -1,0 +1,49 @@
+<html>
+        <head>
+                <title> Student New Page</title>
+        </head>
+        <body>
+                                <% remote_form_for :student, @student, :url=>{:action=>"create"} do |f|%>
+
+                <table align="center">
+
+                                <tr>
+                                        <td> First Name: <%= f.text_field :first_name%></td>
+                                </tr>
+                                <tr>
+                                        <td> Last Name: <%= f.text_field :last_name%></td>
+                                </tr>
+                                <tr>
+                                        <td> Date Of Birth: <%=calendar_date_select_tag("student[dob]")%> </td>
+                                </tr>
+                               <tr>
+                                        <td>
+                                                Gender: <%= radio_button("student","gender", "Male")%> Male
+                                                   <%= radio_button("student","gender", "Female")%>  Female
+                                        </td>
+                                </tr>
+                                <tr>
+                                         <td> Marital Status: <%= select(:student, :marital_status, [['Married',"married"], ['Unmarried', "Unmarried"], ['Widow', "Widow"]], :prompt=>"Select Status") %></td>
+                                </tr>
+                                <tr>
+                                        <td>
+                                            <fieldset><legend> Hobbies:</legend>
+                                                          <%=check_box_tag("hobbies[]", value = "Reading Books", checked = false)%> Reading Books </br>
+                                                          <%=check_box_tag("hobbies[]", value = "Singing Songs", checked = false)%> Singing Songs </br>
+                                                          <%=check_box_tag("hobbies[]", value = "Playing Cricket", checked = false)%> Playing Cricket </br>
+                                                          <%=check_box_tag("hobbies[]", value = "Dancing", checked = false)%> Dancing
+                                              </fieldset>
+                                        </td>
+                                </tr>
+
+                </table>
+                <table align="center">
+                        <tr>
+                                <td><%= f.submit "Enter"%> </td>
+                        </td>
+
+                </table>
+                 <%end%>
+        </body>
+</html>
+

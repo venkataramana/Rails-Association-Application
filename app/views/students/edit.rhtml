@@ -1,0 +1,48 @@
+<html>
+        <head>
+                <title> Editing Student Page</title>
+        </head>
+        <body>
+                <table align="center">
+
+                        <% form_for @student, :url=>{:action=>"update"} do |f|%>
+                                <tr>
+                                        <td> First Name: <%= f.text_field :first_name%><td>
+                                </tr>
+                                <tr>
+                                        <td> Last Name: <%= f.text_field :last_name%><td>
+                                </tr>
+                                <tr>
+                                        <td> Date Of Birth: <%= f.text_field :dob%><td>
+                                </tr>
+                               <tr>
+                                        <td>
+                                                Gender: <%= radio_button("student","gender", "Male")%> Male
+                                                   <%= radio_button("student","gender", "Female")%>  Female
+                                        </td>
+                                </tr>
+                                <tr>
+                                         <td> Marital Status: <%= select(:student, :marital_status, [['Married',"married"], ['Unmarried', "Unmarried"], ['Widow', "Widow"]], :prompt=>"Select Status") %></td>
+                                </tr>
+                                <tr>
+                                        <td>
+                                            <fieldset><legend> Hobbies:</legend>
+                                                          <%=check_box_tag("hobbies[]", "Reading Books", @student.hobbies.include?("Reading Books"))%> Reading Books </br>
+                                                          <%=check_box_tag("hobbies[]", "Singing Songs",@student.hobbies.include?("Singing Songs"))%> Singing Songs </br>
+                                                          <%=check_box_tag("hobbies[]", "Playing Cricket",@student.hobbies.include?("Playing Cricket"))%> Playing Cricket </br>
+                                                          <%=check_box_tag("hobbies[]", "Dancing",@student.hobbies.include?("Dancing"))%> Dancing
+                                              </fieldset>
+                                        </td>
+                                </tr>
+
+                </table>
+                <table align="center">
+                        <tr>
+                                <td><%= f.submit "Update"%> </td>
+                        </td>
+
+                </table>
+                 <%end%>
+        </body>
+</html>
+

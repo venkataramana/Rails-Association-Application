@@ -1,0 +1,36 @@
+<html>
+        <head>
+                <title> Show details Page </title>
+        </head>
+        <body>
+                <table align="center">
+                                <tr>
+                                        <td>
+                                              <p style="color:green"><b>  Name Of Student:</b><p style="color:red"> <%= @student.first_name%> <%= @student.last_name%></p></p>
+                                        </td>
+                                </tr>
+                                <tr>
+                                        <td>
+                                               <p style="color:green"><b>  Date Of Birth: </b><%= @student.dob%></p>
+                                        </td>
+                                </tr>
+                                <tr>
+                                        <td>
+                                                <p style="color:green"><b> Gender: </b><%= @student.gender%></p></p></p>
+                                        </td>
+                                </tr>
+                                <tr>
+                                        <td>
+                                                <p style="color:green"><b> Marital Status: </b><%= @student.marital_status%></p></p>
+                                        </td>
+                                </tr>
+                                <tr>
+                                        <td>
+                                                <p style="color:green"><b> Hobbies: </b><%= @student.hobbies%></p>
+                                        </td>
+                                </tr>
+                        <%= link_to "Back to Index", "/students"%>
+                </table>
+        </body>
+</html>
+

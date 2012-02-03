@@ -1,0 +1,23 @@
+<html>
+        <head>
+                <title> Student Index Page</title>
+                 <%= javascript_include_tag :all%>
+        </head>
+        <body>
+                <% form_remote_tag :url => {:controller=>"students", :action => "search_record"}, :method => :get do %>
+                         <p>
+
+                         <%= text_field_tag :search, params[:search], :placeholder=>"type search text:"%>
+
+                         <%= submit_tag "Search", :first_name => nil%>
+
+                         </p>
+                <% end %>
+                <div id="listing">
+                        <%=render :partial => 'listing'%>
+                </div>
+       </body>
+</html>
+<div id="newrecord">
+</div>
+
